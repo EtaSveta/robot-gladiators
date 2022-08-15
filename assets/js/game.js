@@ -100,12 +100,10 @@ var startGame = function () {
         if (playerInfo.health > 0) {
             // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
             window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
-            debugger;
             // pick new enemy to fight based on the index of the enemyNames array
             var pickedEnemyObj = enemyInfo[i];
             // reset enemyHealth before starting new fight
             pickedEnemyObj.health = randomNumber(40,60); 
-            // use debugger to pause script from running and check what's going on at that moment in the code
             
             // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
             fight(pickedEnemyObj);
@@ -154,25 +152,24 @@ var endGame = function() {
         window.alert("Thank you for playing Robot Gladiators! Come back soon!");
     }
 };
-    
+   
 var shop = function () {
     //ask player what they'd like to do
-    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
+    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE.");
     
     // use switch to carry out action
+    shopOptionPrompt = parseInt(shopOptionPrompt); 
     switch(shopOptionPrompt) {
-        case "refill":
-        case "REFILL":
+        case 1:
             playerInfo.refillHealth ();
             break;
 
 
-        case "upgrade":
+        case 2:
             playerInfo.upgradeAttack ();
             break;
 
-        case "leave":
-        case "LEAVE":
+        case 3:
             window.alert("Leaving the store");
             //do nothing so function will end
             break;
@@ -203,7 +200,7 @@ var playerInfo = {
     attack: 10,
     money: 10,
     reset: function() {
-        this.health = 100;
+        this.health = 20;
         this.money = 10;
         this.attack = 10;
     },
@@ -249,6 +246,7 @@ var enemyInfo = [
 
 
 //start the game when the page loads
+ 
 startGame(); 
 
 
